@@ -39,7 +39,7 @@
         <v-img
            src="/NC.png"
            max-height="40"
-           max-width="60"
+           max-width="55"
         ></v-img>
       <v-spacer />
        <v-btn
@@ -99,12 +99,12 @@ export default {
         {
           icon: 'mdi-view-dashboard',
           title: 'Dashboard',
-          to: '/Dashboard'
+          to: 'Dashboard'
         },
         {
           icon: 'mdi-apps',
           title: 'Inspire',
-          to: '/inspire'
+          to: 'inspire'
         }
       ],
       miniVariant: false,
