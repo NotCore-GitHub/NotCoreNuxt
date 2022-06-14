@@ -3,6 +3,11 @@
     class="mt-4 mx-auto"
     max-width="400"
   >
+            </v-card-text>
+          </v-card>
+      </v-col>
+      <v-col cols="12" md="6" lg="4">
+          <v-card >
     <v-sheet
       class="v-sheet--offset mx-auto"
       color="cyan"
@@ -36,7 +41,6 @@
     </v-card-text>
   </v-card>
 </template>
-
 
 <script>
   export default {
