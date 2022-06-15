@@ -7,7 +7,7 @@
       {{ otherError }}
     </h1>
     <NuxtLink to="/">
-      Home pages
+      Home page
     </NuxtLink>
   </v-app>
 </template>
