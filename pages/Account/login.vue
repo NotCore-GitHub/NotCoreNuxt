@@ -73,10 +73,10 @@ export default {
   methods: {
     login(){
         let json = {
-          "usuario" : this.usuario,
-          "password": this.password
+          "NOMBRE" : this.usuario,
+        //   "password": this.password
         };
-        axios.post('http://solodata.es/auth', json)
+        axios.post('http://localhost:18705/api/Usuario/Login', json)
         .then( data =>{
            if(data.data.status == "ok"){
              localStorage.token = data.data.result.token;
