@@ -1,7 +1,8 @@
 <template>
     <div class="main">
         <v-container>
-            <v-row style="height: 100vh;" justify="center" align="center">
+            <form v-on:submit.prevent="login">
+            <v-row style="height: 100vh;" justify="center">
                 <v-col cols="12">
                     <h1 class="font-weight-medium text-h3 font-weidth pb-8">Setup Your Account.</h1>
                     <v-card>
@@ -11,6 +12,8 @@
                                     <v-text-field
                                         prepend-inner-icon="mdi-account"
                                         label="Name"
+                                        id="Usuario"
+                                        v-model="usuario"
                                     ></v-text-field>
                                     <v-text-field
                                         prepend-inner-icon="mdi-email"
@@ -27,31 +30,62 @@
                                     ></v-text-field>
                                 </v-col>
                             </v-row>
+                            <v-row justify="center">
+                                <!-- <v-col cols="8">
+                                    <span><v-icon>mdi-arrow-left</v-icon> Back</span>
+                                </v-col> -->
+                                <v-col cols="12">
+                                    <v-btn type="submit">
+                                        Log In
+                                    </v-btn>
+                                </v-col>
+                            </v-row>
                         </v-container>
                     </v-card>
-                    <v-row class="mt-15">
-                        <v-col cols="8">
-                            <span><v-icon>mdi-arrow-left</v-icon> Back</span>
-                        </v-col>
-                        <v-col class="ml-0" cols="4">
-                            <v-btn>
-                                Log In
-                            </v-btn>
-                        </v-col>
-                    </v-row>
                 </v-col>
             </v-row>
+            </form>
         </v-container>
+        
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'IndexPage',
   layout: 'blank',
-  data() {
-    return {
+//   data() {
+//     return {
+//         show1: false,
+//     }
+//   },
+  data: function(){
+    return{
+        usuario: "",
+        password: "",
+        error: false,
+        error_msg: "",
         show1: false,
+    }
+  },
+  methods: {
+    login(){
+        let json = {
+          "usuario" : this.usuario,
+          "password": this.password
+        };
+        axios.post('http://solodata.es/auth', json)
+        .then( data =>{
+           if(data.data.status == "ok"){
+             localStorage.token = data.data.result.token;
+             this.$router.push('dashboard');
+           }else{
+             this.error = true;
+             this.error_msg = data.data.result.error_msg;
+           }
+        })
     }
   },
 }
