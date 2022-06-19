@@ -29,7 +29,7 @@
       fixed
       app
     >
-      <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn
         icon
         @click.stop="miniVariant = !miniVariant"
@@ -92,9 +92,9 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
-      clipped: true,
-      drawer: true,
-      fixed: true,
+      clipped: true, //Menu & Nav are Separed 
+      drawer: true, //Menu open from beginning
+      fixed: true,  //Menu Fixed
       items: [
         {
           icon: 'mdi-view-dashboard',
@@ -107,8 +107,9 @@ export default {
           to: 'inspire'
         }
       ],
-      miniVariant: false,
-      right: true,
+      //Menu from profile
+      miniVariant: false, //Show mini menu with icons
+      right: true,       //Minu menu position
       rightDrawer: false,
       title: 'NotCore',
       avatar: '1023c1935f502c2fa799b6593a204131.jpg', 
