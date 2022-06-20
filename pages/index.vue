@@ -1,15 +1,23 @@
 <template>
   <div>
-      <div class="wrapper fadeInDown">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+      <div class="wrapper fadeInDown" style="align-top: 50%">
               <div id="formContent">
                 <!-- Tabs Titles -->
-
+                <br/>
+                <br/>
                 <!-- Icon -->
                 <div class="fadeIn first">
-                  <v-img src="http://localhost:29562/NC.png" style="height: 210px;"></v-img>
-                  <!-- <img src="@/assets/logo.png" id="icon" alt="User Icon" /> -->
+                  <!-- <v-img src="@/assets/NC.png" style="height: 210px;"></v-img> -->
+                  <img src="@/assets/NC.png" id="icon" alt="User Icon" />
                 </div>
-
+                <br/>
+                <br/>
                 <!-- Login Form -->
                 <form v-on:submit.prevent="login">
                   <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario" v-model="usuario">
@@ -31,6 +39,7 @@ import axios from 'axios';
 
 export default {
   name: 'Login',
+  layout: "blank",
   components: {
 
   },
