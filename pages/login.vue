@@ -34,6 +34,13 @@
             {{ error_msg }}
           </div>
         </form>
+        <v-alert
+          color="green"
+          elevation="24"
+          shaped
+          type="success"
+          :value="false"
+        ></v-alert>
       </div>
     </div>
   </div>
@@ -41,8 +48,8 @@
 
 <script>
 import axios from "axios";
-import swal from "sweetalert2";
-import SweetAlertIcons from 'vue-sweetalert-icons';
+// import swal from "sweetalert2";
+// import SweetAlertIcons from 'vue-sweetalert-icons';
 
 export default {
   layout: "blank",
@@ -62,7 +69,7 @@ export default {
         CONTRASENA: this.password,
       };
       try {
-        debugger
+        debugger;
         const response = await this.$auth.loginWith("local", { data: data });
 
         // if (this.$auth.loggedIn == true) {
@@ -76,19 +83,30 @@ export default {
         this.$auth.$storage.setUniversal("email", response.data[0].Email);
         this.$auth.$storage.setUniversal("user", response.data[0].User);
 
-
         await this.$auth.setUserToken(
           response.data[0].Token,
           response.data.refreh_token
         );
-        this.$swal("Bienvenido!", this.$auth.$storage.getUniversal('user'),"success");
-      } catch (err) {this.$swal("No se a podido autenticar!", "Verifique su información","warning");}
-        
-        //   icon: "Warning",
-        //   title: 'Error al ingresar, verifique su información',
-        //   buttonsStyling: true,
-        //   confirmButtonClass: "btn btn-success btn-fill",
-        // }); 
+        this.$swal.fire({
+          title: "Bienvenido!",
+          timer: 2000,
+          type: "success",
+          text: this.$auth.$storage.getUniversal("user")          
+      });        
+      } catch (err) {
+        this.$swal.fire({
+          title: "Error al ingresar, verifique su información",
+          timer: 2000,
+          type: "warning",
+          Animation: true
+      });
+      }
+
+      //   icon: "Warning",
+      //   title: 'Error al ingresar, verifique su información',
+      //   buttonsStyling: true,
+      //   confirmButtonClass: "btn btn-success btn-fill",
+      // });
       // axios.post('http://localhost:1870/api/Usuario/Login', json)
       // .then( data =>{
       //     if(data.request.status == "200"){
