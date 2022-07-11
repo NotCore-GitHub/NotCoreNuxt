@@ -1,7 +1,43 @@
+import { redirect } from '@nuxtjs/auth/lib/module/defaults'
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
+
+  axios: {
+    baseURL: 'http://localhost:1870/api'
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        user: {
+          property: ''
+        },
+        endpoints: {
+          login: {
+            url: "/Usuario/Login",
+            method: "post",
+            propertyName: "data.token"
+          },
+          user: {
+            url: "/Usuario/Get",
+            method: "get"
+          },
+          logout: {
+            url: "/Usuario/Logout",
+            method: "delete"
+          },
+        }
+      }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      home: '/',
+    },
+    watchLoggedIn: true,
+  },
+  
   ssr: false,
 
   // Target: https://go.nuxtjs.dev/config-target
@@ -31,9 +67,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/vue-apexchar', ssr: false}
+    { src: '~/plugins/vue-apexchar', ssr: false }
 
-],
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -45,8 +81,16 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
+  
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
+    'nuxt-sweetalert2'
   ],
+
+  router: {
+    middleware: ['auth']
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {

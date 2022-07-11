@@ -48,6 +48,7 @@
 
 <script>
 export default {
+    // middleware: 'auth-admin',
     data: function() {
       return {
         chartOptions: {
