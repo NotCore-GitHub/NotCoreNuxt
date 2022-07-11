@@ -49,7 +49,7 @@
         />
       </v-avatar>
     </v-app-bar>
-    <v-main>
+    <v-main class="vmain_bg">
       <v-container>
         <Nuxt />
       </v-container>
@@ -122,3 +122,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+ .vmain_bg {
+   background: #FAFAFA
+;
+ }
+</style>
